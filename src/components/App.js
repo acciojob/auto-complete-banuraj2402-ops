@@ -1,34 +1,16 @@
-import React, { useState, useEffect } from "react";
 
-const Autocomplete = ({ suggestions }) => {
-  const [query, setQuery] = useState("");
-  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+import React from "react";
+import './../styles/App.css';
+import Autocomplete from "./AutoComplete";
 
-  useEffect(() => {
-    setTimeout(() => {
-      setFilteredSuggestions(
-        suggestions.filter((suggestion) =>
-          suggestion.toLowerCase().includes(query.toLowerCase())
-        )
-      );
-    }, 500);
-  }, [query, suggestions]);
+const suggestions = ["apple", "banana", "cherry", "date", "elderberry", "fig"];
 
-  const handleInputChange = (event) => {
-    setQuery(event.target.value);
-  };
-
+const App = () => {
   return (
     <div>
-      <h1>Search item</h1>
-      <input type="text" value={query} onChange={handleInputChange} />
-      <ul>
-        {filteredSuggestions.map((suggestion) => (
-          <li key={suggestion}>{suggestion}</li>
-        ))}
-      </ul>
+      <Autocomplete suggestions={suggestions}/>
     </div>
-  );
-};
+  )
+}
 
-export default Autocomplete;
+export default App
